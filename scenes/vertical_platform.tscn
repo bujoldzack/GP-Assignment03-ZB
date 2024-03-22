@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvpf2jwx6r2ch"]
+
+[ext_resource type="Script" path="res://scripts/vertical_platform.gd" id="1_aunb4"]
+[ext_resource type="Texture2D" uid="uid://ctdvwpnf37cgy" path="res://assets/Platforms/Brown Off.png" id="1_rjp6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ficyu"]
+size = Vector2(62, 9)
+
+[node name="VerticalPlatform" type="Node2D"]
+script = ExtResource("1_aunb4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_rjp6y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ficyu")

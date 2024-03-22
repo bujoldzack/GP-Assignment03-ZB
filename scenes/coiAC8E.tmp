@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://cxiei1c0qtwqk"]
+
+[ext_resource type="Texture2D" uid="uid://ld5ko2c0nfxa" path="res://assets/Gold Coin/01.png" id="1_ba276"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_j82ty"]
+[ext_resource type="Texture2D" uid="uid://c2m0olscetwj8" path="res://assets/Gold Coin/02.png" id="2_5r41k"]
+[ext_resource type="Texture2D" uid="uid://dmrj7ajslna8j" path="res://assets/Gold Coin/03.png" id="3_4wy1t"]
+[ext_resource type="Texture2D" uid="uid://cy10g4sh33t3n" path="res://assets/Gold Coin/04.png" id="4_3bwdq"]
+[ext_resource type="AudioStream" uid="uid://be1wuwv7mtyby" path="res://assets/Sounds/Fast-Collection-of-coins-www.fesliyanstudios.com.mp3" id="6_yrj0p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_85cfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ba276")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5r41k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4wy1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3bwdq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enb3b"]
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_j82ty")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_85cfe")
+autoplay = "default"
+frame = 1
+frame_progress = 0.0868963
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_enb3b")
+
+[node name="CoinCollectionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yrj0p")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
